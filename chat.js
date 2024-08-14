@@ -3,6 +3,7 @@ let io;
 const Chat = require("./models/chat");
 const chat = (server) => {
   io = socketIo(server);
+try{
   io.on("connection", (socket) => {
     console.log("A user connected");
 
@@ -54,6 +55,9 @@ const chat = (server) => {
       console.log("User disconnected");
     });
   });
+}catch(err){
+  console.log(err.message);
+}
 };
 
 module.exports = { chat };
